@@ -420,9 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 045786cf504bd7347842d6948241cbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  argsText_1: {fileID: 1298337970}
-  argsText_2: {fileID: 1323153539}
-  urlSignaling: ws://localhost
+  urlSignaling: ws://ec2-54-168-237-57.ap-northeast-1.compute.amazonaws.com/
   signalingType: Unity.RenderStreaming.Signaling.WebSocketSignaling
   iceServers:
   - credential: 
