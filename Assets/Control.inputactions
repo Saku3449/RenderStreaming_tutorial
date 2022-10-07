@@ -1,0 +1,34 @@
+{
+    "name": "Control",
+    "maps": [
+        {
+            "name": "Look",
+            "id": "ba04e02b-7deb-42fb-b99d-c4677e3c44eb",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "e6c9e7c4-a08d-4f95-bb69-17d5264058a4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cb737ac9-cb7e-47aa-a2f3-074f1ffec48a",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
