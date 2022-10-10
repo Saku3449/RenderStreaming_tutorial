@@ -1,12 +1,15 @@
 ﻿<Properties StartupConfiguration="{5BC38C22-1F87-BFE1-7D8C-4FD6DA5BB2A7}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Packages/com.unity.renderstreaming@3.1.0-exp.3/Runtime/Scripts/RenderStreaming.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Packages/com.unity.renderstreaming@3.1.0-exp.3/Runtime/Scripts/Signaling/WebSocketSignaling.cs">
     <Files>
-      <File FileName="Packages/com.unity.renderstreaming@3.1.0-exp.3/Runtime/Scripts/RenderStreaming.cs" Line="7" Column="39" />
+      <File FileName="Assets/Scripts/Toggle.cs" Line="9" Column="35" />
+      <File FileName="Assets/Scripts/Scrollview.cs" Line="10" Column="29" />
+      <File FileName="Packages/com.unity.renderstreaming@3.1.0-exp.3/Runtime/Scripts/RenderStreaming.cs" Line="65" Column="10" />
+      <File FileName="Packages/com.unity.renderstreaming@3.1.0-exp.3/Runtime/Scripts/Signaling/WebSocketSignaling.cs" Line="179" Column="65" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2fc55003-7aa4-4163-b6dd-f2c73c74ff3d" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="54aaeb92-f723-494e-b7cb-ec788a357d44" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

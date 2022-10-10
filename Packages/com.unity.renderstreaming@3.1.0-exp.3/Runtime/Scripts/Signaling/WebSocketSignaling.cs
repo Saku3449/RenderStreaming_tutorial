@@ -18,6 +18,8 @@ namespace Unity.RenderStreaming.Signaling
         private AutoResetEvent m_wsCloseEvent;
         private WebSocket m_webSocket;
 
+        string filename = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + ".txt";
+
         public string Url { get { return m_url; } }
 
         public float Interval { get { return m_timeout; } }
@@ -151,6 +153,17 @@ namespace Unity.RenderStreaming.Signaling
             }
 
             Debug.Log("Signaling: WS managing thread ended");
+            try
+            {
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                {
+                    sw.Write("Signaling: WS managing thread ended\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
         }
 
         private void WSCreate()
@@ -170,6 +183,18 @@ namespace Unity.RenderStreaming.Signaling
             Monitor.Enter(m_webSocket);
 
             Debug.Log($"Signaling: Connecting WS {m_url}");
+            try
+            {
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                {
+                    sw.Write($"Signaling: Connecting WS {m_url}\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
+
             m_webSocket.ConnectAsync();
         }
 
@@ -177,6 +202,17 @@ namespace Unity.RenderStreaming.Signaling
         {
             var content = Encoding.UTF8.GetString(e.RawData);
             Debug.Log($"Signaling: Receiving message: {content}");
+            try
+            {
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                {
+                    sw.Write($"Signaling: Receiving message: {content}\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
 
             try
             {
@@ -236,18 +272,51 @@ namespace Unity.RenderStreaming.Signaling
                     {
                         msg = JsonUtility.FromJson<SignalingMessage>(content);
                         Debug.LogError(msg.message);
+                        try
+                        {
+                            using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                            {
+                                sw.Write(msg.message + "\n");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.Log(ex);
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
                 Debug.LogError("Signaling: Failed to parse message: " + ex);
+                try
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                    {
+                        sw.Write("Signaling: Failed to parse message: " + ex + "\n");
+                    }
+                }
+                catch (Exception _ex)
+                {
+                    Debug.Log(_ex);
+                }
             }
         }
 
         private void WSConnected(object sender, EventArgs e)
         {
             Debug.Log("Signaling: WS connected.");
+            try
+            {
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                {
+                    sw.Write("Signaling: WS connected.\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
             m_mainThreadContext.Post(d => OnStart?.Invoke(this), null);
         }
 
@@ -255,11 +324,33 @@ namespace Unity.RenderStreaming.Signaling
         private void WSError(object sender, ErrorEventArgs e)
         {
             Debug.LogError($"Signaling: WS connection error: {e.Message}");
+            try
+            {
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                {
+                    sw.Write($"Signaling: WS connection error: {e.Message}\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
         }
 
         private void WSClosed(object sender, CloseEventArgs e)
         {
             Debug.Log($"Signaling: WS connection closed, code: {e.Code}");
+            try
+            {
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                {
+                    sw.Write($"Signaling: WS connection closed, code: {e.Code}\n");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex);
+            }
 
             m_wsCloseEvent.Set();
             m_webSocket = null;
@@ -270,18 +361,51 @@ namespace Unity.RenderStreaming.Signaling
             if (m_webSocket == null || m_webSocket.ReadyState != WebSocketState.Open)
             {
                 Debug.LogError("Signaling: WS is not connected. Unable to send message");
+                try
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                    {
+                        sw.Write("Signaling: WS is not connected. Unable to send message\n");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex);
+                }
                 return;
             }
 
             if (data is string s)
             {
                 Debug.Log("Signaling: Sending WS data: " + s);
+                try
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                    {
+                        sw.Write("Signaling: Sending WS data: " + s + "\n");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex);
+                }
                 m_webSocket.Send(s);
             }
             else
             {
                 string str = JsonUtility.ToJson(data);
                 Debug.Log("Signaling: Sending WS data: " + str);
+                try
+                {
+                    using (System.IO.StreamWriter sw = new System.IO.StreamWriter(filename, true))
+                    {
+                        sw.Write("Signaling: Sending WS data: " + str + "\n");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log(ex);
+                }
                 m_webSocket.Send(str);
             }
         }

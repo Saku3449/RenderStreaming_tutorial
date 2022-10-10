@@ -1,0 +1,4 @@
+Signaling: Connecting WS ws://localhost
+Signaling: WS connected.
+Signaling: WS connection closed, code: 1005
+Signaling: WS managing thread ended

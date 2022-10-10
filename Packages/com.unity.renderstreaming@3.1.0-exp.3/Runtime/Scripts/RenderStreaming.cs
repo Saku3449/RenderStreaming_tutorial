@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine;
 using Unity.WebRTC;
 using Unity.RenderStreaming.Signaling;
+using System.IO;
 
 namespace Unity.RenderStreaming
 {
@@ -59,6 +60,7 @@ namespace Unity.RenderStreaming
             return (ISignaling)Activator.CreateInstance(_type, args);
         }
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         void Awake()
         {
             if (!runOnAwake || m_running)
